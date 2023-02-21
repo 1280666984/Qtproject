@@ -1,6 +1,7 @@
 HEADERS += \
-    $$PWD/control.h
+    $$PWD/loginmodule.h \
 
 SOURCES +=  \
-    $$PWD/control.cpp
+    $$PWD/loginmodule.cpp \
+
 

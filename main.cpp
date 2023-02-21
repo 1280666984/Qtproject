@@ -37,6 +37,6 @@ int main(int argc, char *argv[])
 
     //l.show();
     w.show();
-    //QObject::connect(&l,&Login::showmain,&w,&MainWindow::receiveLogin);
+
     return a.exec();
 }

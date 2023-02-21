@@ -122,17 +122,17 @@ void Login::on_toolButton_3_clicked()
     }
     else
     {
-        QSharedPointer<Control> c = Control::getInstance();
-        Control* cc= c.data();
-        bool res = cc->logicVerify(username,password);
+//        QSharedPointer<Control> c = Control::getInstance();
+//        Control* cc= c.data();
+//        bool res = cc->logicVerify(username,password);
 //        qDebug()<<res;
-        if(res){
-            this->hide();
-            emit showmain();
-        }
-        else{
-            QMessageBox::information(this,"警告","用户密码错误！",QMessageBox::Ok);
-        }
+//        if(res){
+//            this->hide();
+//            emit showmain();
+//        }
+//        else{
+//            QMessageBox::information(this,"警告","用户密码错误！",QMessageBox::Ok);
+//        }
     }
 }
 //注册问题
@@ -178,15 +178,15 @@ void Login::on_toolButton_4_clicked()
 
 void Login::on_toolButton_11_clicked()
 {
-    QString regname =  ui->lineEdit->text();
-    QString regword =  ui->lineEdit_3->text();
-    qDebug()<<regname<<regword;
-    QSharedPointer<Control> c = Control::getInstance();
-    Control* cc= c.data();
-    bool ret = cc->regIncresase(regname,regword);
-    if(ret){
-        QMessageBox::information(this,"创建","创建成功",QMessageBox::Ok);
-    }else{
-        QMessageBox::information(this,"创建","创建失败",QMessageBox::Ok);
-    }
+//    QString regname =  ui->lineEdit->text();
+//    QString regword =  ui->lineEdit_3->text();
+//    qDebug()<<regname<<regword;
+//    QSharedPointer<Control> c = Control::getInstance();
+//    Control* cc= c.data();
+//    bool ret = cc->regIncresase(regname,regword);
+//    if(ret){
+//        QMessageBox::information(this,"创建","创建成功",QMessageBox::Ok);
+//    }else{
+//        QMessageBox::information(this,"创建","创建失败",QMessageBox::Ok);
+//    }
 }
