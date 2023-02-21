@@ -17,13 +17,13 @@ private:
     LoginModule& operator =(LoginModule&) = delete;
 
 public slots:
-    bool slot_regVerify(QString regname);
-    void slot_regIncresase(QString regname,QString password);
-    void slot_logicVerify(QString username,QString password,bool &m_b_login);
+    bool slot_regVerify(const QString regname);
+    void slot_regIncresase(const QString regname,const QString password);
+    void slot_logicVerify(const QString username,const QString password,bool &m_b_login);
 
 signals:
-    void signal_regIncresasefinishes(bool m_b_login);
-    void signal_logicVerifyfinishes(bool m_b_signup);
+    void signal_regIncresasefinishes(const bool m_b_login);
+    void signal_logicVerifyfinishes(const bool m_b_signup);
 
 private:
     static QSharedPointer<LoginModule> m_LoginModule_ptr;

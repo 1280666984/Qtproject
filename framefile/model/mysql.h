@@ -13,20 +13,22 @@ public:
    static MySql* getMysql();
    bool open();
    void close();
-   bool operate(QString cmd);
    bool getNext();
-   QVariant getValue(QString column);
-   QVariant getValue(int  column);
+
+   bool operate(const QString cmd);
+   QVariant getValue(const QString column);
+   QVariant getValue(const int column);
 
 private:
     explicit MySql(QObject * parent =nullptr) ;
+    ~MySql();
     MySql(const MySql& mysql) = delete;
     MySql& operator = (MySql&) = delete;
 
 private:
-    static MySql* mysql;
-    QSqlDatabase  db;
-    QSqlQuery   query;
+    static MySql* m_mysql;
+    QSqlDatabase  m_db;
+    QSqlQuery     m_query;
 
 };
 

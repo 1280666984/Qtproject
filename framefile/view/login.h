@@ -35,7 +35,7 @@ private slots:
     void on_toolButton_11_clicked();
 
 signals:
-    void signals_login(QString n,QString p,bool &m_b_login);
+    void signals_login(const QString n,const QString p,bool &m_b_login);
     void signals_signup();
 
     void signals_MainwindowsShow();
@@ -43,7 +43,7 @@ private:
     Ui::Login *ui;
     QLineEdit * lineEdit;
     QPoint reltvpos;
-    bool _move;
+    bool m_move;
 
     bool m_b_login;
     bool m_b_signup;

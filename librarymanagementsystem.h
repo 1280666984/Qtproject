@@ -18,8 +18,6 @@ private:
 
 private slots:
 
-
-
 signals:
 
 

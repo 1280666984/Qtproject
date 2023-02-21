@@ -21,12 +21,12 @@ QSharedPointer<LoginModule> LoginModule::getInstance()
 }
 
 
-bool LoginModule::slot_regVerify(QString regname)
+bool LoginModule::slot_regVerify(const QString regname)
 {
 Q_UNUSED(regname)
 }
 
-void LoginModule::slot_regIncresase(QString regname, QString password)
+void LoginModule::slot_regIncresase(const QString regname, const QString password)
 {
     //  _m->query.exec("create table admin2 (username varchar(20) , password varchar(20))")
     //  _m->query.prepare("insert into admin (username,password)"
@@ -42,11 +42,14 @@ void LoginModule::slot_regIncresase(QString regname, QString password)
 
 }
 
-void LoginModule::slot_logicVerify(QString username, QString password,bool& m_b_login)
+void LoginModule::slot_logicVerify(const QString username, const QString password,bool& m_b_login)
 {
     MySql * m_ = MySql::getMysql();
     QString string = QString("select * from admin where username= '%1' and password= '%2' ").arg(username,password);
-    m_->operate(string);
+    if(!m_->operate(string))
+    {
+        return;
+    }
     if(m_->getNext()){
         QString a = m_->getValue(0).toString();
         QString b = m_->getValue(1).toString();

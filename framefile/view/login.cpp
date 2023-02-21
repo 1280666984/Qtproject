@@ -24,7 +24,7 @@ Login::Login(QWidget *parent) :
     //this->setAttribute(Qt::WA_TranslucentBackground);
 
     //窗口判断移动变量初始化
-    _move = false;
+    m_move = false;
     //单例数据库获取
     //_m    = MySql::getmysql();
 
@@ -71,14 +71,14 @@ void Login::mousePressEvent(QMouseEvent *event)
 
    if(event->button() == Qt::LeftButton){
        this->reltvpos = event->pos();
-       _move = true;
+       m_move = true;
    }
    return QWidget::mousePressEvent(event);
 }
 
 void Login::mouseMoveEvent(QMouseEvent *event)
 {
-  if(_move){
+  if(m_move){
       move(event->globalPos()-reltvpos);
   }
   return QWidget::mouseMoveEvent(event);
@@ -86,7 +86,7 @@ void Login::mouseMoveEvent(QMouseEvent *event)
 
 void Login::mouseReleaseEvent(QMouseEvent *event)
 {
-   _move = false;
+   m_move = false;
    return QWidget::mouseReleaseEvent(event);
 }
 

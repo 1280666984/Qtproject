@@ -5,11 +5,21 @@ CONFIG += c++17
 DESTDIR = $$PWD/bin
 
 HEADERS += \
-    librarymanagementsystem.h
+    appconfig.h \
+    appdata.h \
+    appevent.h \
+    appinit.h \
+    librarymanagementsystem.h \
+    savelog.h
 
 SOURCES += \
+    appconfig.cpp \
+    appdata.cpp \
+    appevent.cpp \
+    appinit.cpp \
     librarymanagementsystem.cpp \
-   main.cpp \
+    main.cpp \
+    savelog.cpp
 
 RESOURCES +=
 
@@ -22,6 +32,7 @@ INCLUDEPATH += \
   $$PWD/framefile/controller
 
 include($$PWD/framefile/view/ui.pri)
+include($$PWD/framefile/model/appdatabase.pri)
 include($$PWD/framefile/model/mysql.pri)
 include($$PWD/framefile/controller/control.pri)
 

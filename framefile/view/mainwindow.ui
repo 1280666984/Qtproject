@@ -224,18 +224,7 @@ QToolButton{
        <property name="currentIndex">
         <number>0</number>
        </property>
-       <widget class="QWidget" name="page">
-        <widget class="QDial" name="dial">
-         <property name="geometry">
-          <rect>
-           <x>200</x>
-           <y>270</y>
-           <width>50</width>
-           <height>64</height>
-          </rect>
-         </property>
-        </widget>
-       </widget>
+       <widget class="QWidget" name="page"/>
        <widget class="QWidget" name="page_2"/>
       </widget>
       <widget class="QWidget" name="widget_3" native="true">

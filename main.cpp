@@ -6,8 +6,6 @@
 
 #include <QtAlgorithms>
 #include "mysql.h"
-#include "login.h"
-#include "mainwindow.h"
 #include <QDebug>
 #include "librarymanagementsystem.h"
 
@@ -34,11 +32,6 @@ int main(int argc, char *argv[])
     MySql* m = MySql::getMysql();
     m->open();
 
-//    Login l;
-//    MainWindow w;
-
-//    l.show();
-//    w.show();
 
     return a.exec();
 }
