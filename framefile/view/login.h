@@ -23,6 +23,9 @@ protected:
     void mouseReleaseEvent(QMouseEvent * event);
     bool eventFilter(QObject *wcg , QEvent * event);
 
+public slots:
+    void slot_LoginOver();
+
 private slots:
     void on_toolButton_clicked();
     void on_toolButton_2_clicked();
@@ -30,16 +33,20 @@ private slots:
     void on_toolButton_4_clicked();
 
     void on_toolButton_11_clicked();
-signals:
-    void showenroll();
-    void showmain();
 
+signals:
+    void signals_login(QString n,QString p,bool &m_b_login);
+    void signals_signup();
+
+    void signals_MainwindowsShow();
 private:
     Ui::Login *ui;
     QLineEdit * lineEdit;
     QPoint reltvpos;
     bool _move;
- //   MySql * _m;
+
+    bool m_b_login;
+    bool m_b_signup;
 
 };
 

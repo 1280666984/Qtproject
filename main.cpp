@@ -9,6 +9,7 @@
 #include "login.h"
 #include "mainwindow.h"
 #include <QDebug>
+#include "librarymanagementsystem.h"
 
 int main(int argc, char *argv[])
 {   
@@ -27,16 +28,17 @@ int main(int argc, char *argv[])
 //    a.setFont(f);
 
 
-
-    //数据库连接
+    LibraryManagementSystem l;
+    l.loginShow();
+//  数据库连接
     MySql* m = MySql::getMysql();
     m->open();
 
-    Login l;
-    MainWindow w;
+//    Login l;
+//    MainWindow w;
 
-    //l.show();
-    w.show();
+//    l.show();
+//    w.show();
 
     return a.exec();
 }

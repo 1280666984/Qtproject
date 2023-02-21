@@ -1,5 +1,4 @@
 #include "login.h"
-#include "mysql.h"
 #include "ui_login.h"
 #include "control.h"
 #include <QKeyEvent>
@@ -11,6 +10,8 @@
 #include <QParallelAnimationGroup>
 #include <QString>
 #include <QTimer>
+
+
 
 Login::Login(QWidget *parent) :
     QWidget(parent),
@@ -45,6 +46,7 @@ Login::Login(QWidget *parent) :
     ui->lineEdit_2->installEventFilter(this);
     this->installEventFilter(this);
 
+    m_b_login = false;
 
 }
 
@@ -114,14 +116,17 @@ void Login::on_toolButton_2_clicked()
 }
 void Login::on_toolButton_3_clicked()
 {
+
     ui->comboBox->addItem(lineEdit->text());
     QString username = lineEdit->text();
     QString password = ui->lineEdit_2->text();
+    qDebug()<<username<<password;
     if(username == "" || password == ""){
         QMessageBox::information(this,"警告","输入不能为空",QMessageBox::Ok);
     }
     else
     {
+        emit signals_login(username,password,m_b_login);
 //        QSharedPointer<Control> c = Control::getInstance();
 //        Control* cc= c.data();
 //        bool res = cc->logicVerify(username,password);
@@ -130,9 +135,7 @@ void Login::on_toolButton_3_clicked()
 //            this->hide();
 //            emit showmain();
 //        }
-//        else{
-//            QMessageBox::information(this,"警告","用户密码错误！",QMessageBox::Ok);
-//        }
+//
     }
 }
 //注册问题
@@ -188,5 +191,14 @@ void Login::on_toolButton_11_clicked()
 //        QMessageBox::information(this,"创建","创建成功",QMessageBox::Ok);
 //    }else{
 //        QMessageBox::information(this,"创建","创建失败",QMessageBox::Ok);
-//    }
+    //    }
+}
+
+void Login::slot_LoginOver()
+{
+    if(m_b_login){
+        this->hide();
+        emit signals_MainwindowsShow();}
+    else{
+        QMessageBox::information(this,"警告","用户密码错误！",QMessageBox::Ok);}
 }
