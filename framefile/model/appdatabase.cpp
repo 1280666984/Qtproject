@@ -10,18 +10,34 @@ QString AppDataBase::m_s_dbFile = "database.db";
 int     AppDataBase::m_s_dbPort = 3306;
 QString AppDataBase::m_s_dbName = "localhost";
 QString AppDataBase::m_s_dbUser = "root";
-QString AppDataBase::m_s_dbPasswd = "1234";
+QString AppDataBase::m_s_dbPasswd = "123456";
 
 AppDataBase ::AppDataBase (QObject *parent)
     : QObject{parent},m_dataBase(QSqlDatabase::addDatabase("QMYSQL")),m_query(QSqlQuery(m_dataBase))
 {
-    appSettingsInstance = new QSettings("Config.ini",QSettings::IniFormat,this);
-//    m_s_dbPath =   appSettingsInstance->value().toString();
-//    m_s_dbFile =   appSettingsInstance->value().toString();
-//    m_s_dbPort =   appSettingsInstance->value().toInt();
-//    m_s_dbName =   appSettingsInstance->value().toString();
-//    m_s_dbUser =   appSettingsInstance->value().toString();
-//    m_s_dbPasswd = appSettingsInstance->value().toString();
+    m_qstrFilename = QString(QCoreApplication::applicationDirPath() + "/Config.ini");
+    appSettingsInstance = new QSettings(m_qstrFilename,QSettings::IniFormat);
+    qDebug()<<m_qstrFilename;
+
+    // appSettingsInstance->beginGroup("APPDATABASE_CONGIF");
+    //  int size = appSettingsInstance->beginReadArray("APPDATABASE_CONGIF");
+    //    for(int i = 0 ;i < 4; i++ ){
+    //        appSettingsInstance->setArrayIndex(i);
+    //        m_s_dbPort =   appSettingsInstance->value("dbport").toInt();
+    //        m_s_dbName =   appSettingsInstance->value("dbname").toString();
+    //        m_s_dbUser =   appSettingsInstance->value("dbuser").toString();
+    //        m_s_dbPasswd = appSettingsInstance->value("dbpasswd").toString();
+    //   appSettingsInstance->endGroup();
+    //    }
+//    appSettingsInstance->endArray();
+
+      appSettingsInstance->beginGroup("APPDATABASE_CONGIF");
+      m_s_dbPort =   appSettingsInstance->value("dbport").toInt();
+      m_s_dbName =   appSettingsInstance->value("dbname").toString();
+      m_s_dbUser =   appSettingsInstance->value("dbuser").toString();
+      m_s_dbPasswd = appSettingsInstance->value("dbpasswd").toString();
+      appSettingsInstance->endGroup();
+      qDebug()<<m_s_dbPasswd<<123;
 }
 AppDataBase* AppDataBase::m_AppDataBase = nullptr;
 AppDataBase  *AppDataBase ::getAppDataBase()
@@ -35,11 +51,14 @@ AppDataBase  *AppDataBase ::getAppDataBase()
 
 bool AppDataBase::openDatabase(const QString dbFileName)
 {
-    m_dataBase.setHostName("localhost");
-    m_dataBase.setPort(3306);
-    m_dataBase.setUserName("root");
-    m_dataBase.setPassword("123456");
-
+    m_dataBase.setDatabaseName(dbFileName);
+    m_dataBase.setHostName(m_s_dbName);
+    m_dataBase.setPort(m_s_dbPort);
+    m_dataBase.setUserName(m_s_dbUser);
+    m_dataBase.setPassword(m_s_dbPasswd);
+    if(!m_dataBase.open()){
+        return false;}
+    else{ return true;}
 }
 
 

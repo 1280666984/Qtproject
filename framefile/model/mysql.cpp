@@ -10,8 +10,7 @@ MySql::MySql(QObject *parent):QObject(parent),m_db(QSqlDatabase::addDatabase("QM
     m_db.setHostName("localhost");
     m_db.setPort(3306);
     m_db.setUserName("root");
-    m_db.setPassword("123456");
-    QSettings * appSettingsInstance = new QSettings("Config.ini",QSettings::IniFormat,this);
+    m_db.setPassword("123456");    
 }
 
 MySql::~MySql()

@@ -6,7 +6,6 @@
 #include <QSqlQuery>
 #include <QVariant>
 #include <QObject>
-#include <QObject>
 #include <QSettings>
 class AppDataBase  : public QObject
 {

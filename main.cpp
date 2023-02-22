@@ -8,7 +8,7 @@
 #include "mysql.h"
 #include <QDebug>
 #include "librarymanagementsystem.h"
-
+#include "appdatabase.h"
 int main(int argc, char *argv[])
 {   
 
@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 //    QFont f;
 //    f.setFamily(font_list[0]);
 //    a.setFont(f);
-
+    AppDataBase * one = AppDataBase::getAppDataBase();
 
     LibraryManagementSystem l;
     l.loginShow();
