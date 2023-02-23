@@ -5,7 +5,6 @@
 #include <QFile>
 
 #include <QtAlgorithms>
-#include "mysql.h"
 #include <QDebug>
 #include "librarymanagementsystem.h"
 #include "appdatabase.h"
@@ -31,11 +30,12 @@ int main(int argc, char *argv[])
     one->openDatabase("text");
 
     LibraryManagementSystem l;
-   // l.loginShow();
-//  数据库连接
-    //MySql* m = MySql::getMysql();
+    l.loginShow();
+
+   //  数据库连接
+   //MySql* m = MySql::getMysql();
    // m->open();
-
-
+   //QString s = QString(SQL_INSERT_LOGININFO.arg(1).arg(4).arg(3));
+    //qDebug()<<s;
     return a.exec();
 }

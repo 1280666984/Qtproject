@@ -1,7 +1,9 @@
 #include "loginmodule.h"
 #include <QDebug>
 #include <QString>
-#include "mysql.h"
+#include <QRandomGenerator>
+
+
 LoginModule::LoginModule(QObject *parent)
     : QObject{parent}
 {}
@@ -20,50 +22,54 @@ QSharedPointer<LoginModule> LoginModule::getInstance()
     return m_LoginModule_ptr;
 }
 
-
-bool LoginModule::slot_regVerify(const QString regname)
+void LoginModule::slot_ControlInsertQueryUser(const QString username)
 {
-Q_UNUSED(regname)
+    QString sqlstr = QString(SQL_SELECT_BY_LOGININFO).arg(username);
+    qDebug()<<sqlstr;
+    emit signal_DataBaseInserQueryUser(sqlstr,valuseList,m_b_QueryUser);
 }
 
-void LoginModule::slot_regIncresase(const QString regname, const QString password)
+void LoginModule::slot_ControlInsertUser(const QString username, const QString password)
 {
-    //  _m->query.exec("create table admin2 (username varchar(20) , password varchar(20))")
-    //  _m->query.prepare("insert into admin (username,password)"
-    //                      "values(:username,:password)");
-    //  _m->query.bindValue(":username", username);
-    //  _m->query.bindValue(":password", password);
-    //  _m->query.exec();
-//    MySql * m_ = MySql::getMysql();
-//    QString string = QString("insert into admin values('%1','%2')").arg(regname,password);
-//   if(m_->operate(string)){
-//    return true;}
-//   else{ return false;}
+    QString randstr = QString::number(QRandomGenerator::global()->bounded(10000));
+    QString randadmin = QString::number((QRandomGenerator::global()->bounded(10000) % 2));
+    QString sqlstr = QString(SQL_INSERT_USERINFO).arg(randstr,username,password,randadmin);
+    qDebug()<<sqlstr<<123;
+    emit signal_DataBaseInsertUser(sqlstr,m_b_signup);
+}
+
+void LoginModule::slot_ControlInsertIogin(const QString loginname, const QString password)
+{
+    QString sqlstr = QString(SQL_SELECT_USERINFO_USER_PASS).arg(loginname,password);
+    qDebug()<<sqlstr<<123;
+    emit signal_DataBaseInsertLogin(sqlstr,valuseList,m_b_login);
 
 }
 
-void LoginModule::slot_logicVerify(const QString username, const QString password,bool& m_b_login)
+void LoginModule::slot_ControlInsertQueryUserFilshes()
 {
-    MySql * m_ = MySql::getMysql();
-    QString string = QString("select * from admin where username= '%1' and password= '%2' ").arg(username,password);
-    if(!m_->operate(string))
-    {
-        return;
+ if(!m_b_QueryUser){
+     qDebug("[login] %s",qPrintable("注册失败账号重复"));
+ }
+
+ emit signal_DataBAseInseerQueryUserFilshes(this->m_b_QueryUser);
+}
+
+void LoginModule::slot_ControlInsertUserFilshes()
+{
+    if(!m_b_signup){
+        qDebug("[login] %s",qPrintable("注册失败"));
     }
-    if(m_->getNext()){
-        QString a = m_->getValue(0).toString();
-        QString b = m_->getValue(1).toString();
-        qDebug()<<username<<password;
 
-        qDebug()<<a<<b<<string;
-        if(username == a && password == b){
-            m_b_login = true;
-            emit signal_logicVerifyfinishes(m_b_login);}
-        else{
-            m_b_login = false;
-            emit signal_logicVerifyfinishes(m_b_login);}
-    }
-    else{
-        m_b_login = false;
-        emit signal_logicVerifyfinishes(m_b_login);}
+    emit signal_DataBaseInsertLoginFilshes(this->m_b_signup);
 }
+
+void LoginModule::slot_ControlInsertIoginFilshes()
+{
+    if(!m_b_login){
+        qDebug("[login] %s",qPrintable("登录失败"));
+    }
+
+    emit signal_DataBaseInsertUSerFilshes(this->m_b_login);
+}
+

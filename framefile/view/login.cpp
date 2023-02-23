@@ -127,15 +127,6 @@ void Login::on_toolButton_3_clicked()
     else
     {
         emit signals_login(username,password,m_b_login);
-//        QSharedPointer<Control> c = Control::getInstance();
-//        Control* cc= c.data();
-//        bool res = cc->logicVerify(username,password);
-//        qDebug()<<res;
-//        if(res){
-//            this->hide();
-//            emit showmain();
-//        }
-//
     }
 }
 //注册问题
@@ -181,19 +172,8 @@ void Login::on_toolButton_4_clicked()
 
 void Login::on_toolButton_11_clicked()
 {
-//    QString regname =  ui->lineEdit->text();
-//    QString regword =  ui->lineEdit_3->text();
-//    qDebug()<<regname<<regword;
-//    QSharedPointer<Control> c = Control::getInstance();
-//    Control* cc= c.data();
-//    bool ret = cc->regIncresase(regname,regword);
-//    if(ret){
-//        QMessageBox::information(this,"创建","创建成功",QMessageBox::Ok);
-//    }else{
-//        QMessageBox::information(this,"创建","创建失败",QMessageBox::Ok);
-    //    }
-}
 
+}
 void Login::slot_LoginOver()
 {
     if(m_b_login){

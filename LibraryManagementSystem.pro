@@ -32,7 +32,6 @@ INCLUDEPATH += \
 
 include($$PWD/framefile/view/ui.pri)
 include($$PWD/framefile/model/appdatabase.pri)
-include($$PWD/framefile/model/mysql.pri)
 include($$PWD/framefile/controller/control.pri)
 
 
