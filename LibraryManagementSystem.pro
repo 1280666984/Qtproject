@@ -5,21 +5,20 @@ CONFIG += c++17
 DESTDIR = $$PWD/bin
 
 HEADERS += \
-    appconfig.h \
-    appdata.h \
+    appconfigdef.h \
     appevent.h \
     appinit.h \
+    appsettings.h \
     librarymanagementsystem.h \
-    savelog.h
+    appdata.h
 
 SOURCES += \
-    appconfig.cpp \
-    appdata.cpp \
     appevent.cpp \
     appinit.cpp \
+    appsettings.cpp \
     librarymanagementsystem.cpp \
     main.cpp \
-    savelog.cpp
+    appdata.cpp
 
 RESOURCES +=
 

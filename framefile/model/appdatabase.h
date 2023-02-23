@@ -2,11 +2,11 @@
 #define AppDataBase_H
 #include <QSqlDatabase>
 #include <QSqlError>
-#include <QSqlDriver>
 #include <QSqlQuery>
 #include <QVariant>
 #include <QObject>
 #include <QSettings>
+
 class AppDataBase  : public QObject
 {
     Q_OBJECT
@@ -33,17 +33,18 @@ signals:
 
 private:
     static AppDataBase * m_AppDataBase;
+
+
     static QString m_s_dbPath;
     static QString m_s_dbFile;
-    static int   m_s_dbPort;
+    static int     m_s_dbPort;
     static QString m_s_dbName;
     static QString m_s_dbUser;
     static QString m_s_dbPasswd;
 
-    QString  m_qstrFilename;
-    QSettings* appSettingsInstance;
+    QString       m_qstrFilename;
+    QSettings*    appSettingsInstance;
     QSqlDatabase  m_dataBase;
-    QSqlQuery     m_query;
 
 };
 
