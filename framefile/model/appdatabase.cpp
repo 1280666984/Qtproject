@@ -33,55 +33,47 @@ AppDataBase  *AppDataBase ::getAppDataBase()
     return m_AppDataBase;
 }
 
-bool AppDataBase::insertData(const QString sqlStr,bool&b)
+void AppDataBase::insertData(const QString sqlStr,bool&b)
 {
   QSqlQuery m_SqlQuery;
   qDebug("[SQL] %s",qPrintable(sqlStr));
   if(!m_SqlQuery.exec(sqlStr)){
     qWarning("[SQL] %s]",qPrintable(m_SqlQuery.lastError().text()));
-    return false;
-  }else {
-    return true;
+    b = false;
   }
-
+  b = true;
 }
 
-bool AppDataBase::deleteData(const QString sqlStr,bool&b)
+void AppDataBase::deleteData(const QString sqlStr,bool&b)
 {
    QSqlQuery m_SqlQuery;
    qDebug("[SQL] %s",qPrintable(sqlStr));
    if(!m_SqlQuery.exec(sqlStr)){
     qWarning("[SQL] %s",qPrintable(m_SqlQuery.lastError().text()));
-    return false;
-   }else {
-       return true;
-
+    b = false;
    }
-
+    b = true;
 }
 
-bool AppDataBase::updateData(const QString sqlStr,bool&b)
+void AppDataBase::updateData(const QString sqlStr,bool&b)
 {
    QSqlQuery m_SqlQuery;
    qDebug("[SQL] %s",qPrintable(sqlStr));
    if(!m_SqlQuery.exec(sqlStr)){
     qWarning("[SQL] %s",qPrintable(m_SqlQuery.lastError().text()));
-    return false;
-   }else {
-       return true;
+    b = false;
    }
-
-
+    b = true;
 }
 
-bool AppDataBase::selectData(const QString sqlStr, QList<QMap<QString, QVariant> > &valuesList ,bool&b)
+void AppDataBase::selectData(const QString sqlStr, QList<QMap<QString, QVariant> > &valuesList ,bool&b)
 {
    QSqlQuery m_SqlQuery;
    qDebug("[SQL] %s",qPrintable(sqlStr));
    if(!m_SqlQuery.exec(sqlStr)){
        qWarning("[SQL %s]",qPrintable(m_SqlQuery.lastError().text()));
-       return false;
-   }
+       b = false;
+    }
 
    for ( int r=0; m_SqlQuery.next(); r++){
        QSqlRecord rec = m_SqlQuery.record();
@@ -91,9 +83,7 @@ bool AppDataBase::selectData(const QString sqlStr, QList<QMap<QString, QVariant>
            vmap[rec.fieldName(c)] = rec.value(c);}
        valuesList.append(vmap);
    }
-   return true;
-
-
+   b = true;
 }
 
 
@@ -115,7 +105,7 @@ bool AppDataBase::openDatabase(const QString dbFileName)
 
 bool AppDataBase::initDatabase()
 {
-    if(!m_dataBase.open()){
+    if(m_dataBase.open()){
         qDebug("[SQL],%s",qPrintable(SQL_CREATE_LOGININFO));
         QSqlQuery m_SqlQuery;
         if(!m_SqlQuery.exec(SQL_CREATE_LOGININFO)){
@@ -128,10 +118,13 @@ bool AppDataBase::initDatabase()
             qWarning("[SQL] %s",qPrintable(m_SqlQuery.lastError().text()));   //<user
             return false;
         }
-
-    }else {
         return true;
     }
+    else{
+        qWarning("Init database failed,database is not open.");
+        return false;
+    }
+
 }
 
 

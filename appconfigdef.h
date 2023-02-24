@@ -1,13 +1,12 @@
 #ifndef APPCONFIG_H
 #define APPCONFIG_H
-
 #include <QString>
-
 #include <QCoreApplication>
 
+
+
+
 #define CONFIG_FILE_NAME QString("./config/database.ini")
-
-
 #define DATABASE_PATH QString("APPDATABASE_CONGIF/path")  //数据库存放路径，./为运行程序所在目录
 #define DATABASE_FILE QString()  //SQLITE数据库文件
 

@@ -3,10 +3,7 @@
 AppSettings* AppSettings::m_appSettings = nullptr;
 QSettings  * AppSettings::m_Settings = nullptr;
 
-AppSettings::AppSettings()
-{
-
-}
+AppSettings::AppSettings(){}
 void AppSettings::quit(){}
 
 AppSettings* AppSettings::getInstance()

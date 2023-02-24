@@ -6,21 +6,14 @@
 
 LoginModule::LoginModule(QObject *parent)
     : QObject{parent}
-{}
-
-QSharedPointer<LoginModule> LoginModule::m_LoginModule_ptr;
-QMutex LoginModule::m_mutex;
-
-QSharedPointer<LoginModule> LoginModule::getInstance()
 {
-    if(nullptr == m_LoginModule_ptr){
-        m_mutex.lock();
-        if(nullptr == m_LoginModule_ptr){
-            m_LoginModule_ptr = QSharedPointer<LoginModule>(new LoginModule,&QObject::deleteLater);}
-        m_mutex.unlock();
-    }
-    return m_LoginModule_ptr;
+    this->m_b_QueryUser = false;
+    this->m_b_login = false;
+    this->m_b_signup = false;
 }
+
+//LoginModule::~LoginModule(){}
+
 
 void LoginModule::slot_ControlInsertQueryUser(const QString username)
 {

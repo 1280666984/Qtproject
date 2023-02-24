@@ -12,13 +12,14 @@ class LoginModule : public QObject
 {
     Q_OBJECT
 public:   
-    static QSharedPointer<LoginModule> getInstance();
-protected:
+    explicit LoginModule(QObject *parent = nullptr);
+//    LoginModule( const LoginModule & LoginModule );
+//    LoginModule& operator =(LoginModule&);
+//    ~LoginModule();
+
 
 private:
-    explicit LoginModule(QObject *parent = nullptr);
-    LoginModule( const LoginModule & LoginModule ) = delete ;
-    LoginModule& operator =(LoginModule&) = delete;
+
 
 public slots:   
     void slot_ControlInsertQueryUser(const QString m_b_QueryUser);
@@ -41,8 +42,6 @@ signals:
 
 
 private:
-    static QSharedPointer<LoginModule> m_LoginModule_ptr;
-    static QMutex m_mutex;
     bool m_b_QueryUser;
     bool m_b_login;
     bool m_b_signup;

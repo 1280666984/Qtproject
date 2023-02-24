@@ -3,7 +3,6 @@
 
 #include <QObject>
 #include "loginmodule.h"
-#include "mysql.h"
 #include "login.h"
 #include "mainwindow.h"
 
@@ -24,6 +23,7 @@ signals:
 private:
     Login m_l;
     MainWindow m_m;
+    LoginModule m_login;
 };
 
 #endif // LIBRARYMANAGEMENTSYSTEM_H

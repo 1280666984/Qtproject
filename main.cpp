@@ -3,12 +3,13 @@
 #include <QFontDatabase>
 #include <QFont>
 #include <QFile>
-
 #include <QtAlgorithms>
 #include <QDebug>
+
 #include "librarymanagementsystem.h"
 #include "appdatabase.h"
 #include "appsettings.h"
+#include "appinit.h"
 int main(int argc, char *argv[])
 {
     QString   m_qstrFilename = QString(QCoreApplication::applicationDirPath() + "/Config.ini");
@@ -32,10 +33,6 @@ int main(int argc, char *argv[])
     LibraryManagementSystem l;
     l.loginShow();
 
-   //  数据库连接
-   //MySql* m = MySql::getMysql();
-   // m->open();
-   //QString s = QString(SQL_INSERT_LOGININFO.arg(1).arg(4).arg(3));
-    //qDebug()<<s;
+
     return a.exec();
 }
