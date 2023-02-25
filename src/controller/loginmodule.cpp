@@ -12,7 +12,7 @@ LoginModule::LoginModule(QObject *parent)
     this->m_b_signup = false;
 }
 
-//LoginModule::~LoginModule(){}
+LoginModule::~LoginModule(){}
 
 
 void LoginModule::slot_ControlInsertQueryUser(const QString username)

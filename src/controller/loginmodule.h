@@ -1,8 +1,6 @@
 #ifndef LoginModule_H
 #define LoginModule_H
 #include <QObject>
-#include <QSharedPointer>
-#include <QMutex>
 #include <QMap>
 #include <QVariant>
 #include "appdatabase.h"
@@ -15,7 +13,7 @@ public:
     explicit LoginModule(QObject *parent = nullptr);
 //    LoginModule( const LoginModule & LoginModule );
 //    LoginModule& operator =(LoginModule&);
-//    ~LoginModule();
+    ~LoginModule();
 
 
 private:

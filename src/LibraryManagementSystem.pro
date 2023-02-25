@@ -5,6 +5,7 @@ CONFIG += c++17
 TARGET = LibManagSys
 DESTDIR = $$PWD/bin
 TEMPLATE = app
+RC_FILE = $$PWD/icons/logo.rc
 
 HEADERS += \
     appconfigdef.h \
@@ -24,7 +25,7 @@ SOURCES += \
 
 RESOURCES +=
 
-RC_ICONS
+
 
 
 INCLUDEPATH += \
@@ -37,9 +38,9 @@ include($$PWD/model/appdatabase.pri)
 include($$PWD/controller/control.pri)
 
 
-
 DISTFILES += \
     qrc.qss \
+    $$PWD/icons\logo.rc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

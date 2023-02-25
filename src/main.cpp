@@ -27,7 +27,6 @@ int main(int argc, char *argv[])
 //    f.setFamily(font_list[0]);
 //    a.setFont(f);
 
-    AppSettings::getInstance();
     AppDataBase * one = AppDataBase::getAppDataBase();
     one->openDatabase("text");
 

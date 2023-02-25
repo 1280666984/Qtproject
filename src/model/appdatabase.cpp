@@ -5,25 +5,25 @@
 #include <QDebug>
 #include <QSqlRecord>
 #include <QMap>
-#include "appsettings.h"
+
 
 AppDataBase* AppDataBase::m_AppDataBase = nullptr;
-QString AppDataBase::m_s_dbPath = "./database";
-QString AppDataBase::m_s_dbFile = "database.db";
-int     AppDataBase::m_s_dbPort = 3306;
-QString AppDataBase::m_s_dbName = "localhost";                                   //<sql默认信息
-QString AppDataBase::m_s_dbUser = "root";
-QString AppDataBase::m_s_dbPasswd = "123456";
-
+QString      AppDataBase::m_s_dbPath = "./database";
+QString      AppDataBase::m_s_dbFile = "database.db";
+int          AppDataBase::m_s_dbPort = 3306;
+QString      AppDataBase::m_s_dbName = "localhost";                                   //<sql默认信息
+QString      AppDataBase::m_s_dbUser = "root";
+QString      AppDataBase::m_s_dbPasswd = "123456";
 
 AppDataBase ::AppDataBase (QObject *parent)
     : QObject{parent}
 {
-    m_s_dbPort =   AppSettings::getSettings(DATABASE_PORT).toInt();
+/*    m_s_dbPort =   AppSettings::getSettings(DATABASE_PORT).toInt();
     m_s_dbName =   AppSettings::getSettings(DATABASE_NAME).toString();
     m_s_dbUser =   AppSettings::getSettings(DATABASE_USER).toString();
     m_s_dbPasswd = AppSettings::getSettings(DATABASE_PASSWD).toString();
-   // qDebug()<<m_s_dbPasswd<<123;
+    qDebug()<<m_s_dbPasswd<<123;
+*/
 }
 
 AppDataBase  *AppDataBase ::getAppDataBase()

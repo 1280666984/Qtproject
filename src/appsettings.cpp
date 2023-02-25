@@ -1,32 +1,59 @@
 #include "appsettings.h"
+#include <QObject>
+#include <QSettings>
+#include <QFile>
 
-AppSettings* AppSettings::m_appSettings = nullptr;
-QSettings  * AppSettings::m_Settings = nullptr;
+static const  QString APP_DATA_DIR_KEY("appadtadir");
+static const  QString SHOTCUT_INI_FILENAME("/config/config.ini");
+static QScopedPointer<AppSettings> instance;
+static QString AppDataForSession;
 
-AppSettings::AppSettings(){}
-void AppSettings::quit(){}
+QSettings AppSettings::m_Setting(APP_DATA_DIR_KEY,QSettings::IniFormat);
 
-AppSettings* AppSettings::getInstance()
+
+AppSettings& AppSettings::Singleton()
 {
-    if(nullptr == m_appSettings){
-        m_appSettings = new AppSettings;
-        QString m_qstrFilename = QString(QCoreApplication::applicationDirPath() + "/Config.ini");
-        m_Settings    = new QSettings(m_qstrFilename,QSettings::IniFormat); }
-    return m_appSettings;
+    if(!instance){
+        if(AppDataForSession.isEmpty()){
+            instance.reset(new AppSettings);
+            if(instance->m_Settings.value(APP_DATA_DIR_KEY).isValid()
+                    && QFile::exists(instance->m_Settings.value(APP_DATA_DIR_KEY).toString() + SHOTCUT_INI_FILENAME))
+                instance.reset(new AppSettings(instance->m_Settings.value(APP_DATA_DIR_KEY).toString() + SHOTCUT_INI_FILENAME));
+        }else{
+            instance.reset(new AppSettings(AppDataForSession));
+        }
+
+    }
+    return *instance;
 }
 
+AppSettings::AppSettings(const QString &appDataLocation)
+    :QObject()
+    ,m_Settings(appDataLocation ,QSettings::IniFormat)
+{
+}
+
+
+//        QString m_qstrFilename = QString(QCoreApplication::applicationDirPath() + );
 QVariant AppSettings::getSettings(QString key)
 {
-    return m_Settings->value(key);
+
+    return m_Setting.value(key);
 }
 
 void AppSettings::setSetting(const QString key, const QVariant value)
 {
-    return m_Settings->setValue(key,value);
+    return m_Setting.setValue(key,value);
 }
-
 
 AppSettings::~AppSettings()
 {
-    delete this->m_Settings;
+
+}
+
+void AppSettings::reset()
+{
+    for(auto &Key: m_Settings.allKeys()){
+        m_Settings.remove(Key);
+    }
 }

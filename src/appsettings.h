@@ -1,27 +1,50 @@
 #ifndef APPSETTINGS_H
 #define APPSETTINGS_H
 #include "appconfigdef.h"
-
+#include <QSharedPointer>
+#include <QMutex>
 #include <QVariant>
 #include <QSettings>
+#include <QObject>
 
 //#define appSettingsInstance AppSettings::getInstance()
-class AppSettings
+class AppSettings:QObject
 {
 public:
-    static AppSettings * getInstance();
-    static QVariant getSettings(const QString key);
-    static void setSetting(const QString key,const QVariant value);
-    static void quit();
+    static AppSettings & Singleton();
+    explicit AppSettings():QObject(){};
+    explicit AppSettings(const QString & appDataLocation);
+
+    void log();
+    void sync();
+    QString  language()  const;
+    void setlanguage(const QString &s);
+    QString  openPath()  const;
+    void setOpenPath(const QString &s);
+    QString  jobPriority() const;
+    void setJobPrriority(const QString &s);
+    QByteArray windowGeometry() const;
+    void setWindowGEometry(const QByteArray &a);
     ~AppSettings();
 
+
+
+    /*
+     测试使用的静态对象及静态函数
+    */
+    static QSettings m_Setting;
+    static void setSetting(const QString key,const QVariant value);
+    static QVariant getSettings(const QString key);
+
 private:
-    explicit AppSettings();
-    AppSettings(const  AppSettings &) = delete;
-    AppSettings & operator=(const AppSettings &) = delete;
+
+public slots:
+    void reset();
+
+
+
 private:
-   static AppSettings*  m_appSettings;
-   static QSettings *   m_Settings;
+   QSettings  m_Settings;
 };
 
 #endif // APPSETTINGS_H
