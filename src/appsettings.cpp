@@ -29,7 +29,8 @@ AppSettings& AppSettings::Singleton()
 
 AppSettings::AppSettings(const QString &appDataLocation)
     :QObject()
-    ,m_Settings(appDataLocation ,QSettings::IniFormat)
+    ,m_Settings(appDataLocation + SHOTCUT_INI_FILENAME,QSettings::IniFormat)
+    ,m_appDataLocation(appDataLocation)
 {
 }
 
@@ -37,7 +38,6 @@ AppSettings::AppSettings(const QString &appDataLocation)
 //        QString m_qstrFilename = QString(QCoreApplication::applicationDirPath() + );
 QVariant AppSettings::getSettings(QString key)
 {
-
     return m_Setting.value(key);
 }
 

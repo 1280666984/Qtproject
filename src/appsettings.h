@@ -7,7 +7,7 @@
 #include <QSettings>
 #include <QObject>
 
-//#define appSettingsInstance AppSettings::getInstance()
+
 class AppSettings:QObject
 {
 public:
@@ -45,6 +45,7 @@ public slots:
 
 private:
    QSettings  m_Settings;
+   QString    m_appDataLocation;
 };
 
 #endif // APPSETTINGS_H

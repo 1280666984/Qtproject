@@ -26,7 +26,10 @@ SOURCES += \
 RESOURCES +=
 
 
-
+CONFIG += DEBUG_AND_RELEASE
+CONFIG(debug,debug|release){
+}else{
+}
 
 INCLUDEPATH += \
   $$PWD/view \
@@ -38,8 +41,10 @@ include($$PWD/model/appdatabase.pri)
 include($$PWD/controller/control.pri)
 
 
+
+
 DISTFILES += \
-    qrc.qss \
+    $$PWD/styles\qrc.qss \
     $$PWD/icons\logo.rc
 
 # Default rules for deployment.
