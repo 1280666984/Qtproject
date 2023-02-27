@@ -11,7 +11,9 @@
 #include "appsettings.h"
 #include "appinit.h"
 
-
+#if defined Q_OS_WIN32
+#else
+#endif
 
 //#ifdef Q_OS_WIN
 //#ifdef QT_DEBUG
@@ -30,11 +32,6 @@ int main(int argc, char *argv[])
 //    f.setFamily(font_list[0]);
 //    a.setFont(f);
 
-    QSettings sett;
-     sett.setValue("animal/snake", 58);
-     sett.value("animal/snake", 1024).toInt();   // returns 58
-     sett.value("animal/zebra", 1024).toInt();   // returns 1024
-     sett.value("animal/zebra").toInt();
 
     AppDataBase * one = AppDataBase::getAppDataBase();
     one->openDatabase("text");

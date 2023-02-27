@@ -5,7 +5,7 @@ LibraryManagementSystem::LibraryManagementSystem(QObject *parent)
 
 }
 
-void LibraryManagementSystem::loginShow()                                                                           //登录按钮接口
+void LibraryManagementSystem::loginShow()
 {
    this->m_l.show();
 }
