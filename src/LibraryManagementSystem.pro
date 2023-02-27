@@ -22,20 +22,24 @@ CONFIG += warn_on
 
 SOURCES += \
     librarymanagementsystem.cpp \
-    main.cpp \
+    main.cpp
 
 HEADERS += \
-    librarymanagementsystem.h \
+    librarymanagementsystem.h
 
 #文件目录
 INCLUDEPATH += \
   $$PWD/class \
-  $$PWD/gui   \
-  $$PWD/core  \
-  $$PWD/model
+  $$PWD/gui   \ 
+  $$PWD/model \
+  $$PWD/core \
+  $$PWD/core/controller \
+  $$PWD/class/app
 
 #添加的pri子目录
 include($$PWD/class/class.pri)
+
+
 include($$PWD/gui/ui.pri)
 include($$PWD/core/core.pri)
 include($$PWD/model/appdatabase.pri)

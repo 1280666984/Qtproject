@@ -180,5 +180,5 @@ void Login::slot_LoginOver()
         this->hide();
         emit signals_MainwindowsShow();}
     else{
-        QMessageBox::information(this,"警告","用户密码错误！",QMessageBox::Ok);}
+        QMessageBox::information(this,"警告","用户密码错误",QMessageBox::Ok);}
 }
