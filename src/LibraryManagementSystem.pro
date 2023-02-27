@@ -1,47 +1,48 @@
-#QT模块添加
-QT  += core gui sql
+QT       += core gui sql
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-#app模板
-TEMPLATE = app
-
-#应用程序存放的目录
-win32:CONFIG(debug,debug|release){
-      DESTDIR = $$PWD/bin/debug
-}else:win32:CONFIG(release,debug|relese){
-      DESTDIR =$$PWD/bin/release
-}
-
-
-#  程序名字和t图标
-TARGET  = LibManagSys
-RC_FILE = $$PWD/icons/logo.rc
-#编译器选项和配置
 CONFIG += c++17
-CONFIG += warn_on
-#win32:QMAKE_CXXFLAGS += /utf-8
 
-SOURCES += \
-    librarymanagementsystem.cpp \
-    main.cpp \
+TARGET = LibManagSys
+DESTDIR = $$PWD/bin
+TEMPLATE = app
+RC_FILE = $$PWD/icons/logo.rc
 
 HEADERS += \
+    appconfigdef.h \
+    appevent.h \
+    appinit.h \
+    appsettings.h \
     librarymanagementsystem.h \
+    appdata.h
 
-#文件目录
+SOURCES += \
+    appevent.cpp \
+    appinit.cpp \
+    appsettings.cpp \
+    librarymanagementsystem.cpp \
+    main.cpp \
+    appdata.cpp
+
+RESOURCES +=
+
+
+CONFIG += DEBUG_AND_RELEASE
+CONFIG(debug,debug|release){
+}else{
+}
+
 INCLUDEPATH += \
-  $$PWD/class \
-  $$PWD/gui   \
-  $$PWD/core  \
-  $$PWD/model
+  $$PWD/view \
+  $$PWD/model \
+  $$PWD/controller
 
-#添加的pri子目录
-include($$PWD/class/class.pri)
-include($$PWD/gui/ui.pri)
-include($$PWD/core/core.pri)
+include($$PWD/view/ui.pri)
 include($$PWD/model/appdatabase.pri)
+include($$PWD/controller/control.pri)
 
 
-#其他文件
+
+
 DISTFILES += \
     $$PWD/styles\qrc.qss \
     $$PWD/icons\logo.rc

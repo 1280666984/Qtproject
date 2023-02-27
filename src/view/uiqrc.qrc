@@ -1,0 +1,36 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qrc/Account.png</file>
+        <file>qrc/lib.gif</file>
+        <file>qrc/lib1.gif</file>
+        <file>qrc/min.png</file>
+        <file>qrc/password .png</file>
+        <file>qrc/up.png</file>
+        <file>qrc/update.png</file>
+        <file>qrc/update1.png</file>
+        <file>qrc/img.png</file>
+        <file>qrc/img1.png</file>
+        <file>qrc/mainbredround.jpg</file>
+        <file>qrc/Addto.png</file>
+        <file>qrc/all.png</file>
+        <file>qrc/Books.png</file>
+        <file>qrc/choose.png</file>
+        <file>qrc/Delete.png</file>
+        <file>qrc/edit.png</file>
+        <file>qrc/individual.png</file>
+        <file>qrc/label.png</file>
+        <file>qrc/left.png</file>
+        <file>qrc/mail.png</file>
+        <file>qrc/more.png</file>
+        <file>qrc/paperclip.png</file>
+        <file>qrc/quit.png</file>
+        <file>qrc/return.png</file>
+        <file>qrc/returnbook.png</file>
+        <file>qrc/right.png</file>
+        <file>qrc/Search.png</file>
+        <file>qrc/Setup.png</file>
+        <file>qrc/View.png</file>
+        <file>qrc/book.jpg</file>
+        <file>qrc/yuan.png</file>
+    </qresource>
+</RCC>
